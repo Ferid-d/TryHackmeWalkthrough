@@ -5,5 +5,8 @@ At first, I make a rust scan to find open ports:
 
 ```bash  
 rustscan -a 192.16.13.53
+```  
+Yeah, we defined that there are three ports:  
+| 21,22,80
 
 
