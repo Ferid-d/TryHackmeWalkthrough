@@ -23,3 +23,6 @@ gpg --decrypt CustomerDetails.xlsx.gpg > CustomerDetails.xlsx
 ```  
 I opened this ".xlsx" file on browser by the help of online excel. It gave me three users and their credentials like username and password. As you can remember, we have an open ftp port. I tried to access with these user's name and password. Only the user "paradox" became successful for ftp connection.  
 
+----  
+i decided
+
