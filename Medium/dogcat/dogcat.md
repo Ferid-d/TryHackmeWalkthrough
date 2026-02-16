@@ -106,12 +106,13 @@ http://10.82.133.126/?view=dog/../../../../../../../var/log/apache2/access.log&e
 Here, we can see that the log is accessible. Now it’s time to poison it. For this, we will be needing Burp Suite. We will capture the request using Burp Suite. Then we will manipulate the User-Agent. We can see that Default User-Agent in the image below.  
 <img width="1029" height="228" alt="Screenshot From 2026-02-16 22-07-12" src="https://github.com/user-attachments/assets/8103c6da-8302-4179-a865-567725732e18" />
 We change the User-Agent to introduce a php code that can call on system variables to run system commands. We forward the request to the server.  
-<img width="1029" height="249" alt="Screenshot From 2026-02-16 22-14-32" src="https://github.com/user-attachments/assets/927dc766-75ad-49d1-92fe-0bfce69019b8" />
-Yeah as you can see I changed two section:
+<img width="1029" height="249" alt="Screenshot From 2026-02-16 22-14-32" src="https://github.com/user-attachments/assets/927dc766-75ad-49d1-92fe-0bfce69019b8" />  
+
+Yeah as you can see I changed two section:  
 ```bash
 #Request: I added "&c=id" for checking
 #Payload: <?php system($_GET['c']); ?>
-```
+```  
 We can search for "uid" or "www-data" to see the result on the response of our request.
 ----
 Yeah, we already know that we can execute commands. So, we can use metasploit to get RCE. Use this commands:
