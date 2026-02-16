@@ -4,7 +4,7 @@ At first I made a rust scan to find open ports:
 ```bash
 rustscan -a 10.82.133.126
 ```
-Two ports are open (22,80). Let's discover the website. This website provide two buttons such as dogs and cats. When we click them, it bring a photo from somewhere. The URL looks like this: http://10.82.133.126/?view=dogs. I tried /etc/passwd but got the message like "Sorry, only dogs or cats are allowed". I made a ffuf scan.
+Two ports are open (22,80). Let's discover the website. This website provide two buttons such as dogs and cats. When we click them, it bring a photo from somewhere. The URL looks like this: http://10.82.133.126/?view=dog. I tried /etc/passwd but got the message like "Sorry, only dogs or cats are allowed". I made a ffuf scan.
 ```bash
 ffuf -u http://10.82.133.126/FUZZ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -recursion -recursion-depth 2 -e .php,.txt,.html -ic
 ```
