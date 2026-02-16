@@ -20,7 +20,7 @@ I first tried to use the URL ***http://10.82.133.126/?view=php://filter/convert.
 The website returned an error: "Sorry, only dogs or cats are allowed." This gave me a huge hint. It means the server is checking my input. It only accepts the request if the word "dog" or "cat" is present in the ?view= parameter. When I tried to read /etc/passwd or index.php directly, the filter blocked me because those words were missing.
 
 #### 2. Bypassing the Filter with Path Traversal:
-To trick the system, I used the keyword it wanted: dog. But I didn't want to stay in the dog folder. So, I used dog/../.
+To trick the system, I used the keyword it wanted: dog. But I didn't want to stay in the dog folder. So, I used dog/../
 
     The server sees "dog" and thinks: "Okay, this is allowed."
     The operating system sees ../ and thinks: "Go back one directory." This allowed me to "break out" of the restriction while still keeping the filter happy.
