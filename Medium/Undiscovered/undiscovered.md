@@ -104,7 +104,11 @@ There is a suspicious file named "script" which is leonard's. I decided to read 
 ```bash
 strings script
 ```
-I saw "/bin/cat" in there which means I can read some files by using this script. It has also suid permission which means I can run it as root. The first thing that I wanted to try was leonard's ssh key. In this way, if I could get it, I can be closer to be root.
+I saw "/bin/cat" in there which means I can read some files by using this script. It has also suid permission which means I can run it as root. Let's execute it:
+```bash
+./script
+```
+
 <img width="906" height="826" alt="Screenshot From 2026-02-19 13-33-41" src="https://github.com/user-attachments/assets/6485236e-b5c9-4d88-adee-8e7c4810766c" />
 Yeahhh we got it. Lets copy and use it to be leonard user. It worked !!!!. 
 
