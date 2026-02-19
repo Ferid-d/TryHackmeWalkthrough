@@ -26,7 +26,7 @@ Yeah, as you can see we found several domains but it would take so much time to 
 ----
 
 I checked the first one "manager.undiscovered.thm". There was a version number "Powered by RiteCMS Version:2.2.1" I looked at it on searchsploit and saw that there are some vulnerabilities about it. Most of them requires us to be aunthenticated, so maybe there can be a login page.  
-I also made a directory scan for this subdomain but there wasn't anything important else. So let's discover others. I specificly targeted the unique sized subdomains at first. Because in CTF's they gives us more important things than others. So, let's check "deliver.undiscovered.thm". It looks same so, I made directory scan again for this subdomain. Yeahh, we found so much directories in there.  
+I also made a directory scan for this subdomain but there wasn't anything important else. So let's discover others. There are so much subdomains but I noticed a key point in there. Look at their line numbers. You need to check only unique ones like (69,83,84). The rest of them is like a copy of each other in most situations. So let's start with "deliver.undiscovered.thm".  
 ```bash
 ffuf -u http://deliver.undiscovered.thm/FUZZ -w /usr/share/wordlists/seclists/Discovery/Web-Content/common.txt -fs 0
 ```
