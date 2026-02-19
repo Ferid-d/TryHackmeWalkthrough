@@ -43,7 +43,7 @@ vendor                  [Status: 301, Size: 325, Words: 20, Lines: 10, Duration:
 ###############
 ```
 ----
-I checked all of them but only **"typo3"** directory was useful. THere eas a login page:  
+I checked all of them but only **"typo3"** directory was useful. There was a login page:  
 We dont have credentials. So lets explore more. There is two main thing for us to do. "Find the version of "TYPO3" or to look at "http://api.vulnnet.thm/vn_internals/api/v2/fetch/?blog=1" to find any vulnerability. I prefered to start with the url.  
 |      
 <img width="1254" height="388" alt="Screenshot From 2026-02-19 20-05-55" src="https://github.com/user-attachments/assets/4233a5e3-3236-491b-aef6-0d945a9abc71" />  
