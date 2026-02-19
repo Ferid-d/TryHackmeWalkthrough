@@ -102,20 +102,21 @@ john --show hash
 We got the user's password. As you remember we had a login page on "admin1.vulnnet.thm" subdirectory. Let's access this account. 
 |    
 <img width="2664" height="1823" alt="Screenshot From 2026-02-19 20-43-27" src="https://github.com/user-attachments/assets/d8e40eec-2026-4d45-94ef-b9f01e25067d" />
-|  
+|   
 Yeah, I explored the sidebar to find interesting places and yeahh I found the **"filelist"** section, my favoriteee!!!. I saw that I can upload a file, so I immediately tried to upload the "reverseshell.php" file from the pentest monkey. But nooo, there is a restriction. It show a message like "Filename "reverseshell.php" is not allowed!". But why?? I searched a little bit more and find another critical section on the navbar.
-|  
+|   
 <img width="2034" height="1264" alt="Screenshot From 2026-02-19 20-48-36" src="https://github.com/user-attachments/assets/8ab7724a-4f91-4cd7-8c4b-d8974f484d80" />
-|  
+|   
 As you can see, we can access "Configure Installation-Wide Options". Lets change the rules :))).
-|  
+|   
 <img width="1266" height="1141" alt="Screenshot From 2026-02-19 20-50-27" src="https://github.com/user-attachments/assets/36dcfbf5-0d80-47a5-8e24-eb00a1d959ac" />
-|  
+|   
 I filtered "file" and found the limitation in there. After removin this part **"\.(php[3-8]?|phpsh|phtml|pht|phar|shtml|cgi)(\..*)?$|\.pl$|^\.htaccess$"**, we must click **"Write Configuration"**. Now, we can upload this file. Lets check:
-|  
+|   
 <img width="2259" height="258" alt="Screenshot From 2026-02-19 20-52-42" src="https://github.com/user-attachments/assets/3121f4cd-bd98-4678-a72f-5f9cbb25ca84" />
-|  
+|   
 We are successfull!!!!!!. The last thing we need to do is log out the user and open this url: "http://admin1.vulnnet.thm/fileadmin/reverseshell.php". But, don't forget to open nc listener on your terminal before this.
+|  
 
 ----
 
