@@ -51,11 +51,11 @@ We dont have credentials. So lets explore more. There is two main thing for us t
 Let's test for Local File Inclusion?  
 ///  
 <img width="1713" height="374" alt="Screenshot From 2026-02-19 20-07-34" src="https://github.com/user-attachments/assets/34c1b81e-f833-4642-be0f-29b5020d3f70" />  
-///  
+|    
 Hmm, it didn't work. I decided to write malicious sql query to figure out if there is a SQL vulnerability. How to do it?  
-///  
+|    
 <img width="1713" height="374" alt="Screenshot From 2026-02-19 20-12-17" src="https://github.com/user-attachments/assets/53ca9f1d-d0f9-4193-b0e9-8920412a5a93" />  
-///  
+|    
 As you can see there isn't any blog with id=99, so it gave an error. But when I entered 99 OR 1=1, the database didn't just look for ID 99. It processed my logic:  
  -- "Is the ID 99?" (No)  
  -- "OR is 1 equal to 1?" (Yes, always!)  
