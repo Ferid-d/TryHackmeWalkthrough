@@ -14,8 +14,8 @@ ffuf -H "Host: FUZZ.vulnnet.thm" -u http://vulnnet.thm -w /usr/share/wordlists/s
 ```
 Yeah, I get 4 subdomains: **[api], [shop], [blog], [admin1]**. Let's check them one-by-one after adding into /etc/hosts file.
 1. http://api.vulnnet.thm/ ---> It is an empty page
-2. http://blog.vulnnet.thm/ ---> There is a username as "SkyWaves" but I am not sure if it will be useful. But in the source code, I sawa line like this **"getJSON('http://api.vulnnet.thm/vn_internals/api/v2/fetch/?blog=1',  function(err, data) {"**. It connected the "empty" API subdomain to a functional endpoint. It revealed the hidden directory structure: /vn_internals/api/v2/fetch/. The ?blog= parameter is a high-value target for LFI (Local File Inclusion) or SSRF testing. I will check it but let's discovery other domains before. I didn't want to miss something important.
-3. http://shop.vulnnet.thm/ ---> In this page, I saw a login button which doesn't work. Maybe it was a rabbit hole. The source code also didn't give any hint.
+2. http://blog.vulnnet.thm/ ---> There is a username as "SkyWaves" but I am not sure if it will be useful. But in the source code, I saw a line like this **"getJSON('http://api.vulnnet.thm/vn_internals/api/v2/fetch/?blog=1',  function(err, data) {"**. It connected the "empty" API subdomain to a functional endpoint. It revealed the hidden directory structure: /vn_internals/api/v2/fetch/. The ?blog= parameter is a high-value target for LFI (Local File Inclusion) or SSRF testing. I will check it but let's discovery other domains before. I didn't want to miss something important.
+3. http://shop.vulnnet.thm/ ---> In this page, I saw a login button which doesn't work. It was a rabbit hole. The source code also didn't give any hint.
 4. http://admin1.vulnnet.thm/ ---> It also looks empty as api.
 
 ----
