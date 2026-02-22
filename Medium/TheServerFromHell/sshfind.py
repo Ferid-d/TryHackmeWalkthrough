@@ -29,7 +29,7 @@ def check_port(ip, port):
     except:
         pass
 
-target_ip = "10.114.188.201"
+target_ip = "MACHINE'S_IP"
 print(f"Scan starting: {target_ip} (2500-4500)...")
 
 threads = []
