@@ -77,7 +77,7 @@ While intercepting the /search request in Burp Suite, I noticed a very suspiciou
 search_cookie="gASVCQAAAAAAAACMBWhlbGxvlC4="
 ```
 It looked like a base64 code. So when I decoded it on terminal by writing:    
-"echo 'gASVCQAAAAAAAACMBWhlbGxvlC4=' | base64 -d" , I saw that It returns me some unreadable symbols and the word "hello" which I searched for. I searched about this search_cookie and learned that -> The prefix gASV is a classic signature of a Python Pickle object (Protocol 3/4). The presence of a Pickle object in a cookie is a massive red flag. Python's pickle module is notoriously insecure because it can be used to execute arbitrary code during the deserialization process.   
+"echo 'gASVCQAAAAAAAACMBWhlbGxvlC4=' | base64 -d" , I saw that It returns me some unreadable symbols and the word "test" which I searched for. I searched about this search_cookie and learned that -> The prefix gASV is a classic signature of a Python Pickle object (Protocol 3/4). The presence of a Pickle object in a cookie is a massive red flag. Python's pickle module is notoriously insecure because it can be used to execute arbitrary code during the deserialization process.   
 
 If the web application takes this cookie and runs pickle.loads() on it to retrieve the search history, we can replace the cookie with a malicious Pickle payload. This would allow us to achieve Remote Code Execution (RCE) on the server.    
 I created a malicious python code to get RCE:  
