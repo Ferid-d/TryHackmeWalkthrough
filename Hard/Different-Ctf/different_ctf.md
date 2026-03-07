@@ -153,7 +153,7 @@ strcat@@GLIBC_2.2.5
 ```
 They are holy triple. Lets explain it:    
 **strcat** --> Normally in says that the password isn't stored complete. It is divided into parts.  
-**strcmp** --> It is used to compare this parts, for defining their real location on the full password.  
+**strcmp** --> It compares the user's input with the generated password to see if they match.  
 **system** --> is used to execute the linux commands such as "cp, cat, sh" like your are in the terminal.  
 
 Simply, if you saw this holy triple, you need to use **"ltrace"** command to see the compared password parts and the library functions that the program uses.  
@@ -190,7 +190,7 @@ It gave us a hint and add the **root.jpg** file into the **hakanbey** user's fol
 00000030: 0000 0056 0301 0005 0000 0001 0000 0068  ...V...........h
 00000040: 0303 0001 0000 0001 0000 0000 5110 0001  ............Q...
 ```
-The hints says us to convert it on CyberChef. So, lets go to there.      
+The hints says us to convert it on CyberChef (It specifically mentioned the 00000020 line. So, lets go to there.      
 <img width="2491" height="931" alt="image" src="https://github.com/user-attachments/assets/e12cbfe1-1dab-4a1a-9522-f1d2dd183e52" />      
 BINGOO!!!! It worked. Let's use these credentials to be root and get the root flag from there --> **root:Go0odJo0BbBro0o**  
 
