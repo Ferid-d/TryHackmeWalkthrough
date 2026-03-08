@@ -222,10 +222,11 @@ When we looked at the strings result for this program, we saw **"/bin/sh"** comm
 ```bash
 python3 -c "print('A'*80)" | /home/thedarktangent/hc0n
 ```
-<img width="1091" height="536" alt="image" src="https://github.com/user-attachments/assets/46d1764b-d292-46fe-900d-1844c28390d2" />     
-The 54 is buffer's max limit. But what is this buffer?  
+<img width="1091" height="536" alt="image" src="https://github.com/user-attachments/assets/46d1764b-d292-46fe-900d-1844c28390d2" />      
+The 54 is buffer's max limit. But what is this buffer?    
 
-The Structure of Memory (The Stack) and the "Limit"    
+### The Structure of Memory (The Stack) and the "Limit"    
+
 When the program runs, it takes a space in RAM called the "Stack". Think of this as three containers stacked on top of each other:    
 
     Buffer (54 bytes): The space where our input (our name) is stored.  
