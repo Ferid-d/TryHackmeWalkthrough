@@ -26,12 +26,15 @@ padbuster http://<target IP>/login.php <cookie value> 8 --cookies hcon=<cookie v
 ```
 You need to write your cookies into there and you are ready to attack.  
 <cookie value> = This is the original encrypted cookie value you have. The tool will modify this value and send it to the server, and try to find the text based on the padding errors returned by the server.      
-`
-8 = block size     
---cookies hcon=<cookie value> = Specifies which cookie to check within the request sent to the server. Here, the value of the cookie named hcon is analyzed.  
---encoding 0 = It shows in which format the data is encrypted.  (0 = base64)  
--plaintext user=administratorhc0nwithyhackme = It simply says padbuster that 'find the cookie for this user'.  
-`
+
+`8 = block size`
+
+`--cookies hcon=<cookie value> = Specifies which cookie to check within the request sent to the server. Here, the value of the cookie named hcon is analyzed. ` 
+
+`--encoding 0 = It shows in which format the data is encrypted.  (0 = base64)  `
+
+`-plaintext user=administratorhc0nwithyhackme = It simply says padbuster that 'find the cookie for this user'.  `
+
 
 ```bash
 After a long time, padbuster gave me this cookie: u7oWkmr0TrKomnSFpCLrMmqypZ4zLdrKwG7XVt97a%2Bcvankk1KBpOgAAAAAAAAAA
