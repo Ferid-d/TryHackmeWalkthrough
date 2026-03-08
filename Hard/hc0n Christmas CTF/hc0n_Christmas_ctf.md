@@ -25,7 +25,8 @@ Bingooo !!! It means there is Oracle Padding vulnerability. It very complex you 
 padbuster http://<target IP>/login.php <cookie value> 8 --cookies hcon=<cookie value> --encoding 0 -plaintext user=administratorhc0nwithyhackme
 ```
 You need to write your cookies into there and you are ready to attack.  
-<cookie value> = This is the original encrypted cookie value you have. The tool will modify this value and send it to the server, and try to find the text based on the padding errors returned by the server.      
+
+`<cookie value> = This is the original encrypted cookie value you have. The tool will modify this value and send it to the server, and try to find the text based on the padding errors returned by the server.`      
 
 `8 = block size`
 
