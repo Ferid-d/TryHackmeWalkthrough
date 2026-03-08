@@ -6,15 +6,20 @@ rustscan -a 10.112.181.140
 ```
 Open Ports: 22, 80, 8080    
 When I opened the web-site, I saw a login and register page in there. Lets discover the directories and meanwhile I checked the 8080 port on the url:    
+|  
 <img width="1048" height="214" alt="image" src="https://github.com/user-attachments/assets/9a5a13af-1755-4a2d-857a-0b643491e846" />    
+|  
 I tried to decrypt it on CyberChef but got noting as a result.    
 
 After spending so much time, I decided to register on the main web-page (The text on the page has said it as well). Then I decided to create an account and look at the cookie maybe we could find something essential.     
+|  
 <img width="1506" height="358" alt="image" src="https://github.com/user-attachments/assets/2ff0c74d-6d9a-4887-9b49-d5d87d53119e" />    
-
+|  
 My cookie: **%2BURZkN9pCbis0O9pFA7Gi8zwaqdYuLkp**  
-There is a big hint. I can see "%2" in my cookie (base64 encryption). Mostly it gives us a hint about **Oracle Padding**. To be sure, I removed the last string of my cookie and click "Enter" and then "Ctrl+R".       
+There is a big hint. I can see "%2" in my cookie (base64 encryption). Mostly it gives us a hint about **Oracle Padding**. To be sure, I removed the last string of my cookie and click "Enter" and then "Ctrl+R".  
+|  
 <img width="1241" height="248" alt="image" src="https://github.com/user-attachments/assets/625c3c70-6555-46aa-b7d1-e777237a52e6" />    
+|  
 Bingooo !!! It means there is Oracle Padding vulnerability. It very complex you can read about it from https://medium.com/@masjadaan/oracle-padding-attack-a61369993c86 but i will try to explain the main concept. When you create a user named "tommy" the website create a cookie for you. But if it is so short, it will ad spaces to your name (which called paddings) and convert the last long version into cookie. The attack is about this paddings. We will use the "padbuster" tool for getting the administrator's cookie. It will take a little bit time because the tool will compare so much things on the cookie. Let's use it:  
 ```bash
 padbuster http://<target IP>/login.php <cookie value> 8 --cookies hcon=<cookie value> --encoding 0 -plaintext user=administratorhc0nwithyhackme
