@@ -120,7 +120,7 @@ Okay, we learned that we should decrypt the string in the "iv.png" photo that wa
 The IV translated to **THEIVFORINGEOAEY**.  
 
 ----
-We founded a string "RwO9+7tuGJ3nc1cIhN4E31WV/qeYGLURrcS7K+Af85w=" from this user: "http://10.112.181.140:8080/". We learned that It is encrypted by AES algorithm. So, lets decrypt it with gathered informations:     
+We founded a string **"RwO9+7tuGJ3nc1cIhN4E31WV/qeYGLURrcS7K+Af85w="** from this user: "http://10.112.181.140:8080/". We learned that It is encrypted by **AES** algorithm. So, lets decrypt it with gathered informations:     
 You can use this website: https://www.devglan.com/online-tools/aes-encryption-decryption     
 We already have:
 `AES Encrypted Text: RwO9+7tuGJ3nc1cIhN4E31WV/qeYGLURrcS7K+Af85w=
