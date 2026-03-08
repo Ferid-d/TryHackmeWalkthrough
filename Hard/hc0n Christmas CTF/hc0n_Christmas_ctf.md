@@ -17,10 +17,10 @@ ffuf -u http://10.112.181.140/FUZZ -w /usr/share/wordlists/seclists/Discovery/We
 Let's check them.   
 In "**/admin**" page, I saw an .apk file (app-release.apk	2019-12-10 08:06 	1.4M). Lets download it for future discovery.   
 In **"/hide-folders"** there was two folder:
-'''
-|--hide-folders
-  |--1
-     | Method not allowed
-  |--2
-     |hola	2019-12-10 07:38 	8.6K
-'''
+```bash
+|--hide-folders  
+  |--1  
+     | Method not allowed  
+  |--2  
+     |hola	2019-12-10 07:38 	8.6K  
+```
