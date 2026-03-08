@@ -215,8 +215,8 @@ They were interesting for me. So, I decided to use nm command also to explore fu
 0000000000601050 D __TMC_END__
 ```
 
-`D dessert - means that It is Data Segment. Which means that dessert is a global or static variable that has a value in the program. For example, there can be something on the code like this: char dessert[] = "cake";  
-T entree_1 - Means that they are Text segment. It includes executable codes - functions. So, our main target is them.`
+`D dessert - means that It is Data Segment. Which means that dessert is a global or static variable that has a value in the program. For example, there can be something on the code like this: char dessert[] = "cake";`    
+`T entree_1 - Means that they are Text segment. It includes executable codes - functions. So, our main target is them.`
 
 When we looked at the strings result for this program, we saw **"/bin/sh"** command in there. This means one of the functions execute this command. Don't forget this approach. But now, we need to check buffer overflow. I used this command to print "A" symbol until not to get **segmentation failure**.    
 ```bash
