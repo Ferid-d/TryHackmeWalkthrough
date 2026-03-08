@@ -103,10 +103,13 @@ Welcome, Login Success! this is a second part of ssh password
 Wrong password
 ```
 Woww, we found another part of the password: **n$@#PDuliL**. I combined these two parts:  **Gf7MRr55n$@#PDuliL**. I tried them on the ssh connection for the **"stuxnet"** user, but it didn't work. Let's look at one of the most important folder **"robots.txt"** that I kept for the end.       
+|  
 <img width="1103" height="298" alt="image" src="https://github.com/user-attachments/assets/945fa055-e374-4332-b8ef-156a579a45bb" />     
-`administratorhc0nwithyhackme -- kept it in my mind  
-famous group 3301 and secret IV is a hint. I searched about it and learned that "famous group 3301" is cicada 3301. It was one of the most popular cryptograpy puzzle. secret IV means "Initialization Vector". This is a block that is used to make the encryption process random in block cypher algorithm, for (example AES, DES). In this way, when we encrypt the same string multiple it will be different in each time. `
-
+|  
+```bash
+administratorhc0nwithyhackme -- kept it in my mind  
+famous group 3301 and secret IV is a hint. I searched about it and learned that "famous group 3301" is cicada 3301. It was one of the most popular cryptograpy puzzle. secret IV means "Initialization Vector". This is a block that is used to make the encryption process random in block cypher algorithm, for (example AES, DES). In this way, when we encrypt the same string multiple it will be different in each time.
+```
 Okay, we learned that we should decrypt the string in the "iv.png" photo that was obtained from robots.txt file. Lets do it. I used this photo from reddit:    
 |   
 <img width="1968" height="371" alt="image" src="https://github.com/user-attachments/assets/fa8d525a-4e54-428d-abd2-75de2d616624" />   
