@@ -1,6 +1,6 @@
 # hc0n Christmas CTF TryHackMe WriteUp  
 ### Machine IP = 10.112.181.140  
-## Before starting I recommend you to solve Anonymous Playground TryHackMe CTF because this is more advanced version of it. You can get its writeup from there: https://github.com/Ferid-d/TryHackmeWalkthrough/blob/main/Hard/Anonymous_Playground/anonymous_playground.md
+## Before starting I recommend you to solve ***Anonymous Playground TryHackMe CTF*** because this is more advanced version of it. You can get its writeup from there: https://github.com/Ferid-d/TryHackmeWalkthrough/blob/main/Hard/Anonymous_Playground/anonymous_playground.md
 
 Start with port scan:  
 ```bash   
