@@ -27,7 +27,7 @@ Log4j is a famous library used in Java programs for logging. Logging is very imp
 
 However, there is a vulnerability in this library. It has a feature called Lookups. When Log4j sees special brackets in a message while writing a log, it tries to go and fetch that data from somewhere. For example, if you write **${java:version}**, it finds the version and writes **"Java version 1.8"** in the log.
   
-Beyond just **internal data**, **Log4j** also allowed fetching information from remote servers using **JNDI (Java Naming and Directory Interface)**. This is the part that makes it dangerous, because while normal lookups only showed internal data, **JNDI** allowed the library to connect to **external servers**. That is what we will do. But first of all, lets check the request on the burp suite.
+Beyond just **internal data**, **Log4j** also allowed fetching information from remote servers using **JNDI (Java Naming and Directory Interface)**. This is the part that makes it dangerous, because while normal lookups only showed internal data, **JNDI** allowed the library to connect to **external servers**. That is what we will do. But first of all, lets check the request on the burp suite.  
 |  
 <img width="1393" height="344" alt="image" src="https://github.com/user-attachments/assets/ab641205-d428-49c5-a81d-2df89bc37190" />  
 |  
