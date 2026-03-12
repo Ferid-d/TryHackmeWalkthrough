@@ -123,9 +123,9 @@ Yeahh, it is our web-page. Let's look at what happens when we search "john" user
 <img width="1033" height="863" alt="image" src="https://github.com/user-attachments/assets/cf0e2d92-c375-4fef-b8e9-efea4a9ccd90" />  
 |    
 Hmm, lets check this special characters:    
-`
+`  
 !@#$%^&*()_+-={}[]|:;’”<>,.?/    
-`
+`  
 |    
 <img width="1033" height="863" alt="image" src="https://github.com/user-attachments/assets/9c484f24-54b5-4e08-80bc-5358b05853ed" />      
 |    
