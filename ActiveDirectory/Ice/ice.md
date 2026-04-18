@@ -205,10 +205,14 @@ Logged On Users : 2
 Meterpreter     : x86/windows
 ```
 
-As you can see, the exploit have used **Icecast2.exe** proccess for us. It looked for a proccess in that system, that a space in its memory can de allocated for opening our meterpereter shell. So, we are working on Icecast2.exe process.    
-But it is not suitable for us. Because the target system, has an x64 architecture. This program is old and written in x86 language. Normally, this program shouldn't work on this system because their Architecture is different. But **WOW64 (Windows 32-bit on Windows 64-bit)** Works as a guard border.    
-It allows these programs to work on that system even if their language is different and also, it has a **"Thunk Layer"**. It is something like **"Whitelist"**. It is responsible for allowing some operations to be implemented by these programs even if they are **32-bits**. The program sends a request to the system to perform any operation. The WOW64 checks it, if this action is allowed, the system will do it.  
-Based on these information, we cannot do so much things like accessing the system as a high privilege user, or get the data such as credentials from there, because WOW64 will block them. So, we need to use "local suggester" for it. But before, let's cross to the x64 proccess at first. Otherwise, it will be a barrier for us in future. When try to improve our privileges, the other exploits cannot do anything with our session where the x86 proccess was used to open a shell because it is completely normal that they cannot be used for priv esc.  
+* As you can see, the exploit have used **Icecast2.exe** proccess for us. It looked for a proccess in that system, that a space in its memory can de allocated for opening our meterpereter shell. So, we are working on Icecast2.exe process.
+  
+* But it is not suitable for us. Because the target system, has an x64 architecture. This program is old and written in x86 language. Normally, this program shouldn't work on this system because their Architecture is different. But **WOW64 (Windows 32-bit on Windows 64-bit)** Works as a guard border.
+    
+* It allows these programs to work on that system even if their language is different and also, it has a **"Thunk Layer"**. It is something like **"Whitelist"**. It is responsible for allowing some operations to be implemented by these programs even if they are **32-bits**. The program sends a request to the system to perform any operation. The WOW64 checks it, if this action is allowed, the system will do it.
+  
+* Based on these information, we cannot do so much things like accessing the system as a high privilege user, or get the data such as credentials from there, because WOW64 will block them. So, we need to use "local suggester" for it. But before, let's cross to the x64 proccess at first. Otherwise, it will be a barrier for us in future. When try to improve our privileges, the other exploits cannot do anything with our session where the x86 proccess was used to open a shell because it is completely normal that they cannot be used for priv esc.
+  
 ```bash
 meterpreter > migrate 1468
 [*] Migrating from 1992 to 1468...
