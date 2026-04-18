@@ -205,7 +205,7 @@ Logged On Users : 2
 Meterpreter     : x86/windows
 ```
 
-1. Initial Access & Process Context  
+## 1. Initial Access & Process Context  
 
 When we exploited the Icecast2 service, our Meterpreter shell was birthed directly inside the Icecast2.exe process memory.  
 
@@ -213,7 +213,7 @@ When we exploited the Icecast2 service, our Meterpreter shell was birthed direct
 
     The Limitation: Even though the target machine is x64 (64-bit), we were trapped inside a 32-bit "bubble" within a 64-bit environment.
 
-2. The WOW64 Subsystem & The "Thunk Layer"  
+## 2. The WOW64 Subsystem & The "Thunk Layer"  
 
 Normally, a 32-bit program cannot run on a 64-bit OS because they "speak" different memory languages. Windows uses WOW64 (Windows 32-bit on Windows 64-bit) to bridge this gap.  
 
@@ -227,7 +227,7 @@ Normally, a 32-bit program cannot run on a 64-bit OS because they "speak" differ
 
     The Barrier: Because of this "Whitelist" (Thunk Layer), our 32-bit shell cannot directly interact with the 64-bit components of the OS. This blocks many Privilege Escalation (PrivEsc) exploits and prevents us from reading 64-bit memory spaces like lsass.exe.
 
-3. The Migration Process: Why and How?  
+## 3. The Migration Process: Why and How?  
 
 To break free from the WOW64 limitations, we used the migrate command.  
 
@@ -238,7 +238,7 @@ To break free from the WOW64 limitations, we used the migrate command.
 
     The Result: We moved from an x86 process to a native x64 process. We are no longer being "translated" by WOW64. We are now "native citizens" of the 64-bit system.
 
-4. Privilege Escalation (LPE)  
+## 4. Privilege Escalation (LPE)  
 
 Now that we are in an x64 session, we have a clear path to the Kernel.  
 
