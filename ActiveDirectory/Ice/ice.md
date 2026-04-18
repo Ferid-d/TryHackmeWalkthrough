@@ -205,13 +205,48 @@ Logged On Users : 2
 Meterpreter     : x86/windows
 ```
 
-* As you can see, the exploit have used **Icecast2.exe** proccess for us. It looked for a proccess in that system, that a space in its memory can de allocated for opening our meterpereter shell. So, we are working on Icecast2.exe process.
-  
-* But it is not suitable for us. Because the target system, has an x64 architecture. This program is old and written in x86 language. Normally, this program shouldn't work on this system because their Architecture is different. But **WOW64 (Windows 32-bit on Windows 64-bit)** Works as a guard border.
-    
-* It allows these programs to work on that system even if their language is different and also, it has a **"Thunk Layer"**. It is something like **"Whitelist"**. It is responsible for allowing some operations to be implemented by these programs even if they are **32-bits**. The program sends a request to the system to perform any operation. The WOW64 checks it, if this action is allowed, the system will do it.
-  
-* Based on these information, we cannot do so much things like accessing the system as a high privilege user, or get the data such as credentials from there, because WOW64 will block them. So, we need to use "local suggester" for it. But before, let's cross to the x64 proccess at first. Otherwise, it will be a barrier for us in future. When try to improve our privileges, the other exploits cannot do anything with our session where the x86 proccess was used to open a shell because it is completely normal that they cannot be used for priv esc.
+1. Initial Access & Process Context  
+
+When we exploited the Icecast2 service, our Meterpreter shell was birthed directly inside the Icecast2.exe process memory.  
+
+    The Context: Since Icecast2.exe is an older 32-bit application, our initial session was an x86 (32-bit) session.
+
+    The Limitation: Even though the target machine is x64 (64-bit), we were trapped inside a 32-bit "bubble" within a 64-bit environment.
+
+2. The WOW64 Subsystem & The "Thunk Layer"  
+
+Normally, a 32-bit program cannot run on a 64-bit OS because they "speak" different memory languages. Windows uses WOW64 (Windows 32-bit on Windows 64-bit) to bridge this gap.  
+
+    The Emulator: WOW64 acts as a translator. It tells the 32-bit app: "Go ahead, act like you're on a 32-bit system. I will translate your requests for the 64-bit Kernel."
+
+    The Thunk Layer (The Whitelist): This is the "Thunking" process. It is a strictly defined set of API translations.
+
+        Standard requests (e.g., "Open this file") are translated and allowed.
+
+        Exploitation requests (e.g., "Inject code into the Kernel") are often not in the translation dictionary.
+
+    The Barrier: Because of this "Whitelist" (Thunk Layer), our 32-bit shell cannot directly interact with the 64-bit components of the OS. This blocks many Privilege Escalation (PrivEsc) exploits and prevents us from reading 64-bit memory spaces like lsass.exe.
+
+3. The Migration Process: Why and How?  
+
+To break free from the WOW64 limitations, we used the migrate command.  
+
+    What happens during Migration? 1. Meterpreter looks for a target process (we chose taskhost.exe, which is x64).
+    2. It allocates a new space in that target process's memory.
+    3. It "injects" its own code into that space and starts a new thread.
+    4. The old connection in Icecast2.exe is closed.
+
+    The Result: We moved from an x86 process to a native x64 process. We are no longer being "translated" by WOW64. We are now "native citizens" of the 64-bit system.
+
+4. Privilege Escalation (LPE)  
+
+Now that we are in an x64 session, we have a clear path to the Kernel.  
+
+    Local Exploit Suggester: We used this to identify ms14_058.
+
+    The Final Strike: Because we are now in an x64 context, the exploit can successfully interact with the 64-bit Windows Kernel without being blocked by the WOW64 Thunk Layer.
+
+    Outcome: We successfully escalated our privileges to NT AUTHORITY\SYSTEM.
   
 ```bash
 meterpreter > migrate 1468
